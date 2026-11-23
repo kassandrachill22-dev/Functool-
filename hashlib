@@ -1,0 +1,37 @@
+import hashlib
+
+# Data must be encoded to bytes
+data = b"Hello, Python hashlib!"
+
+# Create a SHA-256 hash object
+hash_object = hashlib.sha256(data)
+
+# Get the hexadecimal digest
+hex_dig = hash_object.hexdigest()
+print(hex_dig)
+# Output: a fixed-length 64-character hex string
+
+
+import hashlib
+
+sha256_hash = hashlib.sha256()
+
+# Simulate reading a file in chunks
+with open("example.txt", "rb") as f:
+    for byte_block in iter(lambda: f.read(4096), b""):
+        sha256_hash.update(byte_block)
+
+print(sha256_hash.hexdigest())
+
+
+
+  import hashlib
+
+# Dynamically create a SHA-512 hash object
+alg_name = "sha512"
+h = hashlib.new(alg_name, b"Dynamic hashing")
+print(h.hexdigest())
+
+# Check guaranteed available algorithms
+print(hashlib.algorithms_guaranteed)
+# Output includes: {'sha256', 'sha224', 'sha384', 'sha512', 'md5', 'sha1', ...}
