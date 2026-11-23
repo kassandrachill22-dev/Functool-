@@ -1,0 +1,29 @@
+import functools
+
+@functools.lru_cache(maxsize=None)
+def fibonacci(n):
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(100)) # Computes instantly using cached results
+
+
+from functools import partial
+
+def power(base, exponent):
+    return base ** exponent
+
+# Create a specialized function for squaring numbers
+square = partial(power, exponent=2)
+print(square(5))  # Output: 25 (5^2)
+
+
+from functools import wraps
+
+def my_decorator(f):
+    @wraps(f)
+    def wrapper(*args, **kwds):
+        """Wrapper documentation"""
+        return f(*args, **kwds)
+    return wrapper
