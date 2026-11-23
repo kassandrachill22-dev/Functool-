@@ -1,0 +1,15 @@
+from http import HTTPStatus
+import http.client
+
+# Check status codes cleanly without magic numbers
+print(HTTPStatus.OK.value)   # 200
+print(HTTPStatus.OK.phrase)  # 'OK'
+
+# Make a low-level GET request
+conn = http.client.HTTPSConnection("example.com")
+conn.request("GET", "/")
+response = conn.getresponse()
+
+if response.status == HTTPStatus.OK:
+    print("Request succeeded!")
+conn.close()
